@@ -1,0 +1,28 @@
+// Clase SistemaReservasCentralizado (sistema centralizado)
+import java.util.ArrayList;
+import java.util.List;
+
+public class SistemaReservasCentralizado {
+    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Clase> clases = new ArrayList<>();
+    private List<Reserva> reservas = new ArrayList<>();
+
+    public void agregarUsuario(Usuario usuario) {
+        usuarios.add(usuario);
+    }
+
+    public void agregarClase(Clase clase) {
+        clases.add(clase);
+    }
+
+    public void realizarReserva(Usuario usuario, Clase clase, String fechaReserva) {
+        Reserva reserva = new Reserva(usuario, clase, fechaReserva);
+        reservas.add(reserva);
+        System.out.println("Reserva realizada para " + usuario.getNombre() + " en la clase " + clase.getNombre());
+    }
+
+    public void cancelarReserva(Usuario usuario, Clase clase) {
+        reservas.removeIf(reserva -> reserva.getUsuario().equals(usuario) && reserva.getClase().equals(clase));
+        System.out.println("Reserva cancelada para " + usuario.getNombre() + " en la clase " + clase.getNombre());
+    }
+}
